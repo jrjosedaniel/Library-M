@@ -1,0 +1,32 @@
+<%= form_with(model: student, local: true) do |form| %>
+  <% if student.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+
+      <ul>
+      <% student.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+    <%= form.label :name %>
+    <%= form.text_field :name,class: 'form-control' %>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :sid %>
+    <%= form.text_field :sid,class: 'form-control'%>
+  </div>
+
+  <div class="field form-group">
+    <%= form.label :contact %>
+    <%= form.text_area :contact,class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit'save',class: 'btn btn-primary' %>
+  </div>
+<% end %>
