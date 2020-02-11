@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: [:show, :edit, :update, :destroy, :assign_to_student]
 
   # GET /books
   # GET /books.json
@@ -58,6 +58,14 @@ class BooksController < ApplicationController
     respond_to do |format|
       format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
       format.json { head :no_content }
+    end
+  end
+
+  def assign_to_student
+    if request.post?
+      @student = Student.find(params[:student_id])
+      @book.student = @student
+      @book.student_book.update(borrowed_at: Time.current)
     end
   end
 

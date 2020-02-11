@@ -1,0 +1,10 @@
+<%= form_with(url: assign_to_student_book_path(book), local: true) do |form| %>
+
+  <div class="field form-group">
+    <%= select_tag "student_id", options_from_collection_for_select(Student.all, "id", "name"), class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'save', class: 'btn btn-primary'%>
+  </div>
+<% end %>
